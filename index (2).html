@@ -1,0 +1,766 @@
+<html>
+
+<head>
+    <base href="https://tuzlaelections.com/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezultati izbora - Gradsko vijeće Tuzla i Gradonačelnik Tuzle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+         :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --background-color: #34495e;
+            --text-color: #ecf0f1;
+            --card-background: #2c3e50;
+            --success-color: #2ecc71;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        h1,
+        h2,
+        h3 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            padding: 15px 0;
+            color: white;
+        }
+        
+        .progress {
+            height: 25px;
+        }
+        
+        .party-color {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            margin-right: 12px;
+            vertical-align: middle;
+            border-radius: 50%;
+        }
+        
+        .winner {
+            background-color: var(--success-color) !important;
+            color: white;
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .navbar-light .navbar-brand,
+        .navbar-light .navbar-nav .nav-link {
+            color: var(--text-color);
+        }
+        
+        .navbar-light .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(236, 240, 241, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .nav-link {
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .table {
+            color: var(--text-color);
+        }
+        
+        .table-dark {
+            background-color: #212529;
+            color: #fff;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+        }
+        
+        .card {
+            background-color: var(--card-background);
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        
+        footer a {
+            color: var(--primary-color);
+        }
+        
+        footer a:hover {
+            color: var(--text-color);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-clipboard-data me-2" viewBox="0 0 16 16">
+                    <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
+                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg> Lokalni Izbori Tuzla 2024
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showMainResults()">
+                            <i class="bi bi-house-door me-1"></i> Glavni rezultati
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showGornjaTuzlaResults()">
+                            <i class="bi bi-geo-alt me-1"></i> Rezultati iz Gornje Tuzle
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <h1 class="text-center mb-4">Rezultati izbora<br>Gradsko vijeće Tuzla i Gradonačelnik Tuzle</h1>
+        <p class="text-center">Prikaz kandidata iz Gornje Tuzle</p>
+
+        <div id="mainResults">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">Izlaznost birača</h2>
+                    <div class="row mb-3">
+                        <div class="col-md-4 text-center">
+                            <div class="h3" id="maxVoters">0</div>
+                            <div>Ukupno birača</div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="h3" id="currentVoters">0</div>
+                            <div>Trenutna izlaznost</div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="h3" id="percentageVoters">0%</div>
+                            <div>Postotak izlaznosti</div>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div id="voterProgress" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">Rezultati za Gradonačelnika Tuzle</h2>
+                    <table id="mayorResults" class="table table-dark">
+                        <tr>
+                            <th>Kandidat</th>
+                            <th>Broj glasova</th>
+                            <th>Postotak</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">Rezultati za Gradsko vijeće Tuzla</h2>
+                    <div id="councilResults"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="gornjaTuzlaResults" style="display:none;">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">Izlaznost birača u Gornjoj Tuzli</h2>
+                    <div class="row mb-3">
+                        <div class="col-md-4 text-center">
+                            <div class="h3" id="gtMaxVoters">0</div>
+                            <div>Ukupno birača</div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="h3" id="gtCurrentVoters">0</div>
+                            <div>Trenutna izlaznost</div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="h3" id="gtPercentageVoters">0%</div>
+                            <div>Postotak izlaznosti</div>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <div id="gtVoterProgress" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">Rezultati za Gradonačelnika - Gornja Tuzla</h2>
+                    <table id="gtMayorResults" class="table table-dark">
+                        <tr>
+                            <th>Kandidat</th>
+                            <th colspan="5">Izborne jedinice</th>
+                            <th>Ukupno</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>050A032</th>
+                            <th>050A033</th>
+                            <th>050A034</th>
+                            <th>050A035</th>
+                            <th>050A036</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">Rezultati za Gradsko vijeće - Gornja Tuzla</h2>
+                    <div id="gtCouncilResults"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="candidateModal" tabindex="-1" aria-labelledby="candidateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="candidateModalLabel">Detalji o glasovima</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="candidateModalBody">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center text-lg-start mt-4">
+        <div class="text-center p-3">
+            Razvio: Ermin Selimović |
+            <a href="https://infinitycreative.agency">Infinity Creative Agency</a>
+        </div>
+    </footer>
+
+    <script>
+        const electionData = {
+            "maxVoters": 100000,
+            "currentVoters": 0,
+            "mayorCandidates": [{
+                "name": "Zijad Lugavić",
+                "votes": 0,
+                "winner": false
+            }, {
+                "name": "Zoran Blagojević",
+                "votes": 0,
+                "winner": false
+            }, {
+                "name": "Derviš Čičko",
+                "votes": 0,
+                "winner": false
+            }, {
+                "name": "Tihomir Mihajlović",
+                "votes": 0,
+                "winner": false
+            }],
+            "councilParties": [{
+                "name": "SDA – STRANKA DEMOKRATSKE AKCIJE",
+                "color": "#00A86B",
+                "candidates": [{
+                    "name": "AZRA FEUKIĆ",
+                    "listNumber": 4,
+                    "votes": 0,
+                    "winner": false
+                }, {
+                    "name": "ĆAZIM MUŠANOVIĆ",
+                    "listNumber": 7,
+                    "votes": 0,
+                    "winner": false
+                }]
+            }, {
+                "name": "SDP – SOCIJALDEMOKRATSKA PARTIJA BOSNE I HERCEGOVINE",
+                "color": "#FF0000",
+                "candidates": [{
+                    "name": "MUHAREM MUSLIĆ",
+                    "listNumber": 20,
+                    "votes": 0,
+                    "winner": false
+                }]
+            }, {
+                "name": "TUZLANSKA ALTERNATIVA",
+                "color": "#FFA500",
+                "candidates": [{
+                    "name": "MENSUR ALIĆ",
+                    "listNumber": 1,
+                    "votes": 0,
+                    "winner": false
+                }, {
+                    "name": "JASMINA MUSTAČEVIĆ",
+                    "listNumber": 8,
+                    "votes": 0,
+                    "winner": false
+                }, {
+                    "name": "SAMRA ĆORHODŽIĆ",
+                    "listNumber": 19,
+                    "votes": 0,
+                    "winner": false
+                }, {
+                    "name": "MAIDA MEHMEDOVIĆ",
+                    "listNumber": 32,
+                    "votes": 0,
+                    "winner": false
+                }, {
+                    "name": "MERISA KUŠLJUGIĆ",
+                    "listNumber": 35,
+                    "votes": 0,
+                    "winner": false
+                }]
+            }, {
+                "name": "NEZAVISNA LISTA \"SLOBODA\"",
+                "color": "#1E90FF",
+                "candidates": [{
+                    "name": "HUSEJN KARIĆ",
+                    "listNumber": 29,
+                    "votes": 0,
+                    "winner": false
+                }]
+            }],
+            "gornjaTuzlaVoters": {
+                "maxVoters": 15000,
+                "currentVoters": 0
+            },
+            "gornjaTuzlaResults": [{
+                "name": "Zijad Lugavić",
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }, {
+                "name": "Zoran Blagojević",
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }, {
+                "name": "Derviš Čičko",
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }, {
+                "name": "Tihomir Mihajlović",
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }],
+            "gornjaTuzlaCouncilResults": [{
+                "name": "AZRA FEUKIĆ",
+                "party": "SDA – STRANKA DEMOKRATSKE AKCIJE",
+                "listNumber": 4,
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }, {
+                "name": "ĆAZIM MUŠANOVIĆ",
+                "party": "SDA – STRANKA DEMOKRATSKE AKCIJE",
+                "listNumber": 7,
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }, {
+                "name": "MUHAREM MUSLIĆ",
+                "party": "SDP – SOCIJALDEMOKRATSKA PARTIJA BOSNE I HERCEGOVINE",
+                "listNumber": 20,
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }, {
+                "name": "MENSUR ALIĆ",
+                "party": "TUZLANSKA ALTERNATIVA",
+                "listNumber": 1,
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }, {
+                "name": "JASMINA MUSTAČEVIĆ",
+                "party": "TUZLANSKA ALTERNATIVA",
+                "listNumber": 8,
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }, {
+                "name": "SAMRA ĆORHODŽIĆ",
+                "party": "TUZLANSKA ALTERNATIVA",
+                "listNumber": 19,
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }, {
+                "name": "MAIDA MEHMEDOVIĆ",
+                "party": "TUZLANSKA ALTERNATIVA",
+                "listNumber": 32,
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }, {
+                "name": "MERISA KUŠLJUGIĆ",
+                "party": "TUZLANSKA ALTERNATIVA",
+                "listNumber": 35,
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }, {
+                "name": "HUSEJN KARIĆ",
+                "party": "NEZAVISNA LISTA \"SLOBODA\"",
+                "listNumber": 29,
+                "votes": {
+                    "050A032": 0,
+                    "050A033": 0,
+                    "050A034": 0,
+                    "050A035": 0,
+                    "050A036": 0
+                }
+            }]
+        };
+
+        function updateVoterInfo() {
+            const {
+                maxVoters,
+                currentVoters
+            } = electionData;
+            document.getElementById('maxVoters').textContent = maxVoters.toLocaleString();
+            document.getElementById('currentVoters').textContent = currentVoters.toLocaleString();
+            const percentage = (currentVoters / maxVoters) * 100;
+            document.getElementById('percentageVoters').textContent = percentage.toFixed(2) + '%';
+            document.getElementById('voterProgress').style.width = `${percentage}%`;
+        }
+
+        function updateGornjaTuzlaVoterInfo() {
+            const {
+                maxVoters,
+                currentVoters
+            } = electionData.gornjaTuzlaVoters;
+            document.getElementById('gtMaxVoters').textContent = maxVoters.toLocaleString();
+            document.getElementById('gtCurrentVoters').textContent = currentVoters.toLocaleString();
+            const percentage = (currentVoters / maxVoters) * 100;
+            document.getElementById('gtPercentageVoters').textContent = percentage.toFixed(2) + '%';
+            document.getElementById('gtVoterProgress').style.width = `${percentage}%`;
+        }
+
+        function updateMayorResults() {
+            const table = document.getElementById('mayorResults');
+            table.innerHTML = `
+        <tr>
+            <th>Kandidat</th>
+            <th>Broj glasova</th>
+            <th>Postotak</th>
+        </tr>
+    `;
+            electionData.mayorCandidates.forEach(candidate => {
+                const row = table.insertRow(-1);
+                const nameCell = row.insertCell(0);
+                nameCell.textContent = candidate.name;
+                nameCell.style.cursor = 'pointer';
+                nameCell.addEventListener('click', () => showCandidateDetails(candidate, 'mayor'));
+                row.insertCell(1).textContent = candidate.votes.toLocaleString();
+                const percentage = ((candidate.votes / electionData.currentVoters) * 100).toFixed(2);
+                row.insertCell(2).textContent = percentage + '%';
+                if (candidate.winner) {
+                    row.classList.add('winner');
+                }
+            });
+        }
+
+        function updateGornjaTuzlaMayorResults() {
+            const table = document.getElementById('gtMayorResults');
+            table.innerHTML = `
+        <tr>
+            <th>Kandidat</th>
+            <th colspan="5">Izborne jedinice</th>
+            <th>Ukupno</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>050A032</th>
+            <th>050A033</th>
+            <th>050A034</th>
+            <th>050A035</th>
+            <th>050A036</th>
+            <th></th>
+        </tr>
+    `;
+            electionData.gornjaTuzlaResults.forEach(candidate => {
+                const row = table.insertRow(-1);
+                row.insertCell(0).textContent = candidate.name;
+                row.insertCell(1).textContent = candidate.votes['050A032'];
+                row.insertCell(2).textContent = candidate.votes['050A033'];
+                row.insertCell(3).textContent = candidate.votes['050A034'];
+                row.insertCell(4).textContent = candidate.votes['050A035'];
+                row.insertCell(5).textContent = candidate.votes['050A036'];
+                const total = Object.values(candidate.votes).reduce((a, b) => a + b, 0);
+                row.insertCell(6).textContent = total;
+            });
+        }
+
+        function updateCouncilResults() {
+            const container = document.getElementById('councilResults');
+            container.innerHTML = '';
+            electionData.councilParties.forEach(party => {
+                        const partyDiv = document.createElement('div');
+                        partyDiv.classList.add('mb-4');
+                        partyDiv.innerHTML = `
+            <h3>
+                <span class="party-color" style="background-color: ${party.color};"></span>
+                ${party.name}
+            </h3>
+            <div class="table-responsive">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>Kandidat</th>
+                            <th>Broj liste</th>
+                            <th>Broj glasova</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${party.candidates.map(candidate => `
+                            <tr class="${candidate.winner ? 'table-success' : ''}">
+                                <td class="candidate-name" style="cursor: pointer;">${candidate.name}</td>
+                                <td>${candidate.listNumber}</td>
+                                <td>${candidate.votes.toLocaleString()}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
+        `;
+        container.appendChild(partyDiv);
+    });
+
+    document.querySelectorAll('.candidate-name').forEach(nameCell => {
+        nameCell.addEventListener('click', () => {
+            const candidateName = nameCell.textContent;
+            const candidate = electionData.councilParties.flatMap(party => party.candidates).find(c => c.name === candidateName);
+            showCandidateDetails(candidate, 'council');
+        });
+    });
+}
+
+function updateGornjaTuzlaCouncilResults() {
+    const container = document.getElementById('gtCouncilResults');
+    container.innerHTML = '';
+    
+    const parties = [...new Set(electionData.gornjaTuzlaCouncilResults.map(c => c.party))];
+    
+    parties.forEach(partyName => {
+        const party = electionData.councilParties.find(p => p.name === partyName);
+        const partyDiv = document.createElement('div');
+        partyDiv.classList.add('mb-4');
+        partyDiv.innerHTML = `
+            <h3>
+                <span class="party-color" style="background-color: ${party.color};"></span>
+                ${partyName}
+            </h3>
+            <div class="table-responsive">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>Kandidat</th>
+                            <th>Broj liste</th>
+                            <th colspan="5">Izborne jedinice</th>
+                            <th>Ukupno</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>050A032</th>
+                            <th>050A033</th>
+                            <th>050A034</th>
+                            <th>050A035</th>
+                            <th>050A036</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${electionData.gornjaTuzlaCouncilResults.filter(c => c.party === partyName).map(candidate => {
+                            const total = Object.values(candidate.votes).reduce((a, b) => a + b, 0);
+                            return `
+                                <tr>
+                                    <td>${candidate.name}</td>
+                                    <td>${candidate.listNumber}</td>
+                                    <td>${candidate.votes['050A032']}</td>
+                                    <td>${candidate.votes['050A033']}</td>
+                                    <td>${candidate.votes['050A034']}</td>
+                                    <td>${candidate.votes['050A035']}</td>
+                                    <td>${candidate.votes['050A036']}</td>
+                                    <td>${total}</td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            </div>
+        `;
+        container.appendChild(partyDiv);
+    });
+}
+
+function showCandidateDetails(candidate, type) {
+    const modalTitle = document.getElementById('candidateModalLabel');
+    const modalBody = document.getElementById('candidateModalBody');
+    
+    modalTitle.textContent = `Detalji o glasovima - ${candidate.name}`;
+    
+    let content = `<p>Ukupan broj glasova: ${candidate.votes}</p>`;
+    
+    if (type === 'mayor') {
+        const gtCandidate = electionData.gornjaTuzlaResults.find(c => c.name === candidate.name);
+        content += `<h5>Glasovi iz Gornje Tuzle:</h5>
+        <table class="table table-dark table-striped">
+            <tr>
+                <th>050A032</th>
+                <th>050A033</th>
+                <th>050A034</th>
+                <th>050A035</th>
+                <th>050A036</th>
+            </tr>
+            <tr>
+                <td>${gtCandidate.votes['050A032']}</td>
+                <td>${gtCandidate.votes['050A033']}</td>
+                <td>${gtCandidate.votes['050A034']}</td>
+                <td>${gtCandidate.votes['050A035']}</td>
+                <td>${gtCandidate.votes['050A036']}</td>
+            </tr>
+        </table>`;
+    } else if (type === 'council') {
+        const gtCandidate = electionData.gornjaTuzlaCouncilResults.find(c => c.name === candidate.name);
+        content += `<h5>Glasovi iz Gornje Tuzle:</h5>
+        <table class="table table-dark table-striped">
+            <tr>
+                <th>050A032</th>
+                <th>050A033</th>
+                <th>050A034</th>
+                <th>050A035</th>
+                <th>050A036</th>
+            </tr>
+            <tr>
+                <td>${gtCandidate.votes['050A032']}</td>
+                <td>${gtCandidate.votes['050A033']}</td>
+                <td>${gtCandidate.votes['050A034']}</td>
+                <td>${gtCandidate.votes['050A035']}</td>
+                <td>${gtCandidate.votes['050A036']}</td>
+            </tr>
+        </table>`;
+    }
+    
+    modalBody.innerHTML = content;
+    
+    const modal = new bootstrap.Modal(document.getElementById('candidateModal'));
+    modal.show();
+}
+
+function showMainResults() {
+    document.getElementById('mainResults').style.display = 'block';
+    document.getElementById('gornjaTuzlaResults').style.display = 'none';
+}
+
+function showGornjaTuzlaResults() {
+    document.getElementById('mainResults').style.display = 'none';
+    document.getElementById('gornjaTuzlaResults').style.display = 'block';
+    updateGornjaTuzlaResults();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateVoterInfo();
+    updateMayorResults();
+    updateCouncilResults();
+    updateGornjaTuzlaVoterInfo();
+    updateGornjaTuzlaMayorResults();
+    updateGornjaTuzlaCouncilResults();
+    showMainResults();
+});
+    </script>
+</body>
+
+</html>
