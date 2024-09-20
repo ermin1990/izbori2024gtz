@@ -25,7 +25,7 @@
         margin-bottom: 20px;
     }
     h1 {
-        font-size: 1.6em;
+        font-size: 2.2em;
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -103,31 +103,77 @@
         }
     }
     .modal-content {
-        background-color: var(--card-background);
-        color: var(--text-color);
+        background-color: #1a2a3a;
+        color: #ffffff;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     }
     .modal-header {
-        border-bottom: 1px solid var(--secondary-color);
+        border-bottom: 1px solid #3498db;
+        padding: 20px;
     }
-    .modal-footer {
-        border-top: 1px solid var(--secondary-color);
+    .modal-body {
+        padding: 30px;
     }
-    .close {
+    .modal-title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #3498db;
+    }
+    .modal .close {
         color: var(--text-color);
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
     }
-    .list-group-item {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-        border-color: var(--primary-color);
+    .modal .close:hover {
+        opacity: 1;
     }
-    .table-dark tbody tr:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        transition: background-color 0.3s ease;
+    .candidate-votes {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #2ecc71;
+        margin-bottom: 30px;
+        text-align: center;
     }
-    .narrow-column {
-        width: 80px;
-        min-width: 80px;
-        max-width: 80px;
+    .voting-unit {
+        background-color: #2c3e50;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+        border: 1px solid #34495e;
+    }
+    .voting-unit:hover {
+        background-color: #34495e;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .voting-unit-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #3498db;
+    }
+    .voting-unit-votes {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #ecf0f1;
+    }
+    .fade-in {
+        animation: fadeIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .modal .btn-close {
+        color: #ffffff;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+    .modal .btn-close:hover {
+        opacity: 1;
     }
 </style>
 </head>
@@ -505,60 +551,40 @@ function showCandidateDetails(candidate, type) {
     const modalTitle = document.getElementById('candidateModalLabel');
     const modalBody = document.getElementById('candidateModalBody');
     
-    modalTitle.textContent = `Detalji o glasovima - ${candidate.name}`;
+    modalTitle.textContent = candidate.name;
     
-    let content = `<p>Ukupan broj glasova: ${candidate.votes}</p>`;
+    let content = `<div class="candidate-votes fade-in">${candidate.votes.toLocaleString()} glasova</div>`;
     
-    if (type === 'mayor') {
+    if (type === 'mayor' && electionData.gornjaTuzlaResults) {
         const gtCandidate = electionData.gornjaTuzlaResults.find(c => c.name === candidate.name);
-        content += `<h5>Glasovi iz Gornje Tuzle:</h5>
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                050A032
-                <span class="badge bg-primary rounded-pill">${gtCandidate.votes['050A032']}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                050A033
-                <span class="badge bg-primary rounded-pill">${gtCandidate.votes['050A033']}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                050A034
-                <span class="badge bg-primary rounded-pill">${gtCandidate.votes['050A034']}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                050A035
-                <span class="badge bg-primary rounded-pill">${gtCandidate.votes['050A035']}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                050A036
-                <span class="badge bg-primary rounded-pill">${gtCandidate.votes['050A036']}</span>
-            </li>
-        </ul>`;
-    } else if (type === 'council') {
+        if (gtCandidate) {
+            content += `<h5 class="mb-4">Glasovi iz Gornje Tuzle:</h5>
+            <div class="row">
+                ${Object.entries(gtCandidate.votes).map(([unit, votes]) => `
+                    <div class="col-md-6 mb-3">
+                        <div class="voting-unit fade-in">
+                            <div class="voting-unit-title">${unit}</div>
+                            <div class="voting-unit-votes">${votes}</div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>`;
+        }
+    } else if (type === 'council' && electionData.gornjaTuzlaCouncilResults) {
         const gtCandidate = electionData.gornjaTuzlaCouncilResults.find(c => c.name === candidate.name);
-        content += `<h5>Glasovi iz Gornje Tuzle:</h5>
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                050A032
-                <span class="badge bg-primary rounded-pill">${gtCandidate.votes['050A032']}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                050A033
-                <span class="badge bg-primary rounded-pill">${gtCandidate.votes['050A033']}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                050A034
-                <span class="badge bg-primary rounded-pill">${gtCandidate.votes['050A034']}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                050A035
-                <span class="badge bg-primary rounded-pill">${gtCandidate.votes['050A035']}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                050A036
-                <span class="badge bg-primary rounded-pill">${gtCandidate.votes['050A036']}</span>
-            </li>
-        </ul>`;
+        if (gtCandidate) {
+            content += `<h5 class="mb-4">Glasovi iz Gornje Tuzle:</h5>
+            <div class="row">
+                ${Object.entries(gtCandidate.votes).map(([unit, votes]) => `
+                    <div class="col-md-6 mb-3">
+                        <div class="voting-unit fade-in">
+                            <div class="voting-unit-title">${unit}</div>
+                            <div class="voting-unit-votes">${votes}</div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>`;
+        }
     }
     
     modalBody.innerHTML = content;
@@ -566,7 +592,6 @@ function showCandidateDetails(candidate, type) {
     const modal = new bootstrap.Modal(document.getElementById('candidateModal'));
     modal.show();
 }
-
 function showMainResults() {
     document.getElementById('mainResults').style.display = 'block';
     document.getElementById('gornjaTuzlaResults').style.display = 'none';
