@@ -426,7 +426,6 @@ function updateGornjaTuzlaMayorResults() {
             <th>050A033</th>
             <th>050A034</th>
             <th>050A035</th>
-            <th>050A036</th>
             <th></th>
         </tr>
     `;
@@ -438,7 +437,7 @@ function updateGornjaTuzlaMayorResults() {
         row.insertCell(3).textContent = candidate.votes['050A034'];
         row.insertCell(4).textContent = candidate.votes['050A035'];
         const total = Object.values(candidate.votes).reduce((a, b) => a + b, 0);
-        row.insertCell(6).textContent = total;
+        row.insertCell(5).textContent = total;
     });
 }
 
