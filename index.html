@@ -342,7 +342,6 @@ async function fetchData() {
     try {
         const response = await fetch('https://raw.githubusercontent.com/ermin1990/izborigtzdata/refs/heads/main/izboridata.json');
         electionData = await response.json();
-        console.log(electionData);
         
         updateAllData();
     } catch (error) {
