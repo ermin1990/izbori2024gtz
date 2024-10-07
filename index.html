@@ -430,15 +430,20 @@ function updateGornjaTuzlaMayorResults() {
         </tr>
     `;
     electionData.gornjaTuzlaResults.forEach(candidate => {
-        const row = table.insertRow(-1);
-        row.insertCell(0).textContent = candidate.name;
-        row.insertCell(1).textContent = candidate.votes['050A032'];
-        row.insertCell(2).textContent = candidate.votes['050A033'];
-        row.insertCell(3).textContent = candidate.votes['050A034'];
-        row.insertCell(4).textContent = candidate.votes['050A035'];
-        const total = Object.values(candidate.votes).reduce((a, b) => a + b, 0);
-        row.insertCell(6).textContent = total;
-    });
+    const row = table.insertRow(-1);
+    row.insertCell(0).textContent = candidate.name;
+    row.insertCell(1).textContent = candidate.votes['050A032'];
+    row.insertCell(2).textContent = candidate.votes['050A033'];
+    row.insertCell(3).textContent = candidate.votes['050A034'];
+    row.insertCell(4).textContent = candidate.votes['050A035'];
+    
+    // Izračunaj ukupne glasove
+    const total = Object.values(candidate.votes).reduce((a, b) => a + b, 0);
+    
+    // Umetni ćeliju na indeks 5 za ukupne glasove
+    row.insertCell(5).textContent = total;
+});
+
 }
 
 function updateCouncilResults() {
